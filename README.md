@@ -7,9 +7,16 @@ Installation:
 2) Install flask  
 3) Install create-react-app
 
-How to run :  
-$ yarn start-api  
-$ yarn start
+How to run : 
+1) Activate virtual environment  
+  $ python3 -m venv venv  
+  $ source venv/bin/activate
+2) Start the frontend  
+  $ yarn start  
+  Open browser with http://localhost:3000  
+3) Start the Flask backend at http://localhost:5000 using :  
+  $ yarn start-api  
+
 
 NOTE:  
 Insert the data to sqlite database using Postman.
