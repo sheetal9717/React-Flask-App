@@ -14,8 +14,9 @@ How to run :
 2) Start the frontend  
   $ yarn start  
   Open browser with http://localhost:3000  
-3) Start the Flask backend at http://localhost:5000 using :  
+3) Start the Flask backend using :  
   $ yarn start-api  
+  Open brwoser with http://localhost:5000/country to see fetched data from API.  
 
 
 NOTE:  
