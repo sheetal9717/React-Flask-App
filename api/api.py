@@ -1,13 +1,3 @@
-import time
-# from flask import Flask
-from flask import Flask, request, jsonify
-app = Flask(__name__)
-
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time()}
-
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -15,14 +5,12 @@ Created on Thu Sep 10 13:07:31 2020
 
 @author: sheetal
 """
-
-
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import os
+app = Flask(__name__)
 
-
-# app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname("__file__"))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'crud.sqlite')
 db = SQLAlchemy(app)
@@ -73,12 +61,6 @@ def add_country():
     
     db.session.add(new_country)
     db.session.commit()
-    # print("***************************")
-    # print(new_country.country)
-    # print(new_country.country_code)
-    # print(new_country.total_cases)
-   
-    # print("***************************")
     return "successfully added country detail"
 
 
@@ -87,9 +69,6 @@ def add_country():
 def get_country():
     all_countries = Country.query.all()
     result = countries_schema.dump(all_countries)
-    print("++++++++++++++++++++")
-    print(type(result))
-    print("++++++++++++++++++++")
     return jsonify(result)
 
 
@@ -98,20 +77,6 @@ def get_country():
 def country_detail(id):
     country_ = Country.query.get(id)
     return country_schema.jsonify(country_)
-
-
-# # endpoint to update country
-# @app.route("/country/<id>", methods=["PUT"])
-# def country_update(id):
-#     country_ = Country.query.get(id)
-#     country_code = request.json['country_code']
-#     country_name = request.json['country']
-
-#     country_.country = country_name
-#     country_.country_code = country_code
-
-#     db.session.commit()
-#     return country_schema.jsonify(country_)
 
 
 # # endpoint to delete country detail after getting country id using country_detail method
